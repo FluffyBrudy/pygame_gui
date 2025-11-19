@@ -1,4 +1,4 @@
-from typing import Dict, TypedDict, Union
+from typing import Dict, Literal, TypedDict, Union
 
 
 class ThemeColours(TypedDict, total=False):
@@ -26,6 +26,11 @@ class ThemeColours(TypedDict, total=False):
     filled_bar: str
     unfilled_bar: str
     text_cursor: str
+    normal_text_shadow: str
+    hovered_text_shadow: str
+    active_text_shadow: str
+    selected_text_shadow: str
+    disabled_text_shadow: str
 
 
 class ThemeMisc(TypedDict, total=False):
@@ -37,6 +42,12 @@ class ThemeMisc(TypedDict, total=False):
     text_horiz_alignment_padding: str
     enable_arrow_buttons: str
     sliding_button_width: str
+    text_horiz_alignment: Literal["center", "left", "right"]
+    text_horiz_alignment_padding: str
+    text_vert_alignment: Literal["center", "top", "bottom"]
+    text_vert_alignment_padding: str
+    text_shadow_size: str
+    text_shadow_offset: str
 
 
 class ThemeFont(TypedDict, total=False):
@@ -73,38 +84,38 @@ class TThemeBase(TypedDict, total=False):
 TTheme = Union[Dict[str, ThemeBlock], TThemeBase]
 
 
-"""
-USUAGE:
-from typing import TYPE_CHECKING, Dict, cast
-from constants import MAIN_PANEL_ID
+# """
+# USUAGE:
+# from typing import TYPE_CHECKING, Dict, cast
+# from constants import MAIN_PANEL_ID
 
 
-if TYPE_CHECKING:
-    from ttypes.theme import TTheme
+# if TYPE_CHECKING:
+#     from ttypes.theme import TTheme
 
 
-DEFAULT_THEME: "TTheme" = {
-    "defaults": {
-        "colours": {
-            "normal_bg": "#ff0000",
-            "hovered_bg": "#35393e",
-            "disabled_bg": "#25292e",
-            "selected_bg": "#193754",
-            "normal_text": "#c5cbd8",
-            "hovered_text": "#FFFFFF",
-            "normal_border": "#DDDDDD",
-        }
-    },
-    MAIN_PANEL_ID: {
-        "colours": {"dark_bg": "rgb(50, 100, 50)"},
-        "misc": {"border_width": "0"},
-    },
-}
-"""
-"""
-NOTE: It is required you to add TTheme option in union of UIManager
-        self.manager = pygame_gui.UIManager(
-            (self.width, self.height), DEFAULT_THEME, enable_live_theme_updates=True
-        )
-        right now linter show error because TTheme isnt in your type system.
-"""
+# DEFAULT_THEME: "TTheme" = {
+#     "defaults": {
+#         "colours": {
+#             "normal_bg": "#ff0000",
+#             "hovered_bg": "#35393e",
+#             "disabled_bg": "#25292e",
+#             "selected_bg": "#193754",
+#             "normal_text": "#c5cbd8",
+#             "hovered_text": "#FFFFFF",
+#             "normal_border": "#DDDDDD",
+#         }
+#     },
+#     MAIN_PANEL_ID: {
+#         "colours": {"dark_bg": "rgb(50, 100, 50)"},
+#         "misc": {"border_width": "0"},
+#     },
+# }
+# """
+# """
+# NOTE: It is required you to add TTheme option in union of UIManager
+#         self.manager = pygame_gui.UIManager(
+#             (self.width, self.height), DEFAULT_THEME, enable_live_theme_updates=True
+#         )
+#         right now linter show error because TTheme isnt in your type system.
+# """
